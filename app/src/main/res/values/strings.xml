@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeatherAppKotlin</string>
+    <string name="weather_api_key">662da23514137fcd303aa26e9c4cbbff</string>
+    <string name="location_permission_rationale_message">The Location Permission is needed to get the Weather at your location.</string>
+</resources>
