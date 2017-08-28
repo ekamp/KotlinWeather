@@ -19,6 +19,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'WEATHER_API_KEY', "\"<YOUR WEATHER_API_KEY>\""
+    }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
