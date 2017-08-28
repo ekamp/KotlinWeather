@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
-import android.widget.Button
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import toothpick.Scope
@@ -16,8 +15,6 @@ import weather.ekamp.com.weatherappkotlin.model.parsers.WeatherDescription
 import weather.ekamp.com.weatherappkotlin.presenter.LandingPresenter
 import javax.inject.Inject
 import android.view.animation.AnimationUtils
-
-
 
 class Landing : AppCompatActivity(), LandingView {
 
@@ -60,7 +57,7 @@ class Landing : AppCompatActivity(), LandingView {
         sync_button.animation?.let {
             sync_button.animation.repeatCount = Animation.INFINITE
         } ?:run {
-            var rotation = AnimationUtils.loadAnimation(this, R.animator.sync_rotator)
+            val rotation = AnimationUtils.loadAnimation(this, R.animator.sync_rotator)
             rotation.repeatCount = Animation.INFINITE
             sync_button.startAnimation(rotation)
         }
@@ -94,6 +91,11 @@ class Landing : AppCompatActivity(), LandingView {
 
     override fun onRefresh() {
         presenter.onWeatherRequest()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sync_button.clearAnimation()
     }
 
     override fun onDestroy() {
