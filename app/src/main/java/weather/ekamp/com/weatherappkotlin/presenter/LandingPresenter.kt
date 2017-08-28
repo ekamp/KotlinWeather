@@ -25,8 +25,12 @@ class LandingPresenter @Inject constructor() {
      */
     fun onAttachView(landingView: LandingView) {
         this.landingView = landingView
-        createLocationSubscription()
+        onWeatherRequest()
+    }
+
+    fun onWeatherRequest() {
         landingView.displayLoadingIndicator()
+        createLocationSubscription()
     }
 
     /**

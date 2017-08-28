@@ -65,4 +65,13 @@
         android:textSize="20sp"
         tools:text="\u00b0F" />
 
+    <Button
+        android:id="@+id/sync_button"
+        android:layout_margin="16dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/sync"/>
+
 </RelativeLayout>
