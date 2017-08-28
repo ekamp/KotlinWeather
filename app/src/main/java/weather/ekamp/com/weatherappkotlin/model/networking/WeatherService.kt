@@ -2,6 +2,7 @@ package weather.ekamp.com.weatherappkotlin.model.networking
 
 import android.app.Application
 import okhttp3.Cache
+import weather.ekamp.com.weatherappkotlin.BuildConfig
 import weather.ekamp.com.weatherappkotlin.model.parsers.WeatherDescription
 import java.io.File
 import javax.inject.Inject
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 open class WeatherService @Inject constructor(var application: Application) {
 
     private val BASE_URL = "http://api.openweathermap.org/data/2.5/"
-    private val WEATHER_API_KEY = "662da23514137fcd303aa26e9c4cbbff"
+    private val WEATHER_API_KEY = BuildConfig.WEATHER_API_KEY
     private val TEMPERATURE_UNITS = "imperial"
     private val sizeOfHttpCache : Long = 10 * 1024 * 1024 // 10 MiB
     lateinit var weatherApi : WeatherApi

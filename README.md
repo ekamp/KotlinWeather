@@ -3,6 +3,18 @@
 
 Small application that will present a user with Weather at their given location.
 
+### Setup API Key for Open Weather Map
+```
+1. Get API Key from Open Weather Map from
+https://home.openweathermap.org/api_keys
+
+2. open app/build.gradle
+
+3. replace <YOUR WEATHER_API_KEY> with your api key you just registered
+
+4. Sync your project with the updated Gradle file
+```
+
 ### Tools / Libs Utilized
 - Jetbrains Kotlin : https://kotlinlang.org/
 - Toothpick Dependency Injection : https://github.com/stephanenicolas/toothpick

@@ -4,6 +4,7 @@ import android.location.Location
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import toothpick.Scope
@@ -13,6 +14,7 @@ import weather.ekamp.com.weatherappkotlin.model.location.UserLocationManager
 import weather.ekamp.com.weatherappkotlin.model.parsers.WeatherDescription
 import weather.ekamp.com.weatherappkotlin.presenter.LandingPresenter
 import javax.inject.Inject
+import android.view.animation.AnimationUtils
 
 class Landing : AppCompatActivity(), LandingView {
 
@@ -26,6 +28,8 @@ class Landing : AppCompatActivity(), LandingView {
         activityScope = Toothpick.openScopes(application, this)
         Toothpick.inject(this, activityScope)
         setContentView(R.layout.activity_main)
+        sync_button.setOnClickListener { onRefresh() }
+
         presenter.onAttachView(this)
     }
 
@@ -50,6 +54,13 @@ class Landing : AppCompatActivity(), LandingView {
         weather_description.visibility = View.GONE
         temperature.visibility = View.GONE
         weather_representation.visibility = View.GONE
+        sync_button.animation?.let {
+            sync_button.animation.repeatCount = Animation.INFINITE
+        } ?:run {
+            val rotation = AnimationUtils.loadAnimation(this, R.animator.sync_rotator)
+            rotation.repeatCount = Animation.INFINITE
+            sync_button.startAnimation(rotation)
+        }
     }
 
     override fun hideLoadingIndicator() {
@@ -57,6 +68,7 @@ class Landing : AppCompatActivity(), LandingView {
         weather_description.visibility = View.VISIBLE
         temperature.visibility = View.VISIBLE
         weather_representation.visibility = View.VISIBLE
+        sync_button.animation.repeatCount = 0 // finish current animation
     }
 
     override fun displayErrorToUser(message: String) {
@@ -75,6 +87,15 @@ class Landing : AppCompatActivity(), LandingView {
     override fun onLocationNotFound() {
         //Notify the user that the location could not be collected
         displayErrorToUser("Location Could not be determined please try again")
+    }
+
+    override fun onRefresh() {
+        presenter.onWeatherRequest()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sync_button.clearAnimation()
     }
 
     override fun onDestroy() {
