@@ -33,21 +33,21 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBS_VERSION"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-moshi:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    compile "io.reactivex.rxjava2:rxjava:2.1.0"
-    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
-    compile 'com.google.android.gms:play-services-location:11.0.0'
-    compile 'com.github.stephanenicolas.toothpick:toothpick-runtime:1.0.7'
-    compile 'com.github.stephanenicolas.toothpick:smoothie:1.0.7'
-    kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:1.0.7'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.easymock:easymock:3.4'
-    testCompile 'com.github.stephanenicolas.toothpick:toothpick-testing:1.0.7'
+    compile "com.squareup.picasso:picasso:$PICASSO_VERSION"
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+    compile "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
+    compile "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
+    compile "com.google.android.gms:play-services-location:$PLAY_SERVICES_VERSION"
+    compile "com.github.stephanenicolas.toothpick:toothpick-runtime:$TOOTHPICK_VERSION"
+    compile "com.github.stephanenicolas.toothpick:smoothie:$TOOTHPICK_VERSION"
+    kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$TOOTHPICK_VERSION"
+    testCompile "com.github.stephanenicolas.toothpick:toothpick-testing:$TOOTHPICK_VERSION"
+    testCompile "junit:junit:$JUNIT_VERSION"
+    testCompile "org.easymock:easymock:$EASYMOCK_VERSION"
 }
 
 kapt {
