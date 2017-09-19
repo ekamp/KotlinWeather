@@ -20,7 +20,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'WEATHER_API_KEY', "\"<YOUR WEATHER_API_KEY>\""
+        it.buildConfigField 'String', 'WEATHER_API_KEY', "\"c1302d276960198b7803920222ab1dfb\""
     }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
