@@ -10,6 +10,7 @@ import javax.inject.Provider
  * Created by anthonyfaucogney on 19/09/2017.
  */
 class WeatherApiProvider @Inject constructor(@Named("retrofit") var retrofit: Retrofit) : Provider<WeatherApi> {
+
     override fun get(): WeatherApi {
         return retrofit.create(WeatherApi::class.java)
     }

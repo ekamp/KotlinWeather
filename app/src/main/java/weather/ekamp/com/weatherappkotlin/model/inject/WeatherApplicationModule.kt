@@ -14,14 +14,13 @@ import weather.ekamp.com.weatherappkotlin.model.networking.injection.WeatherApiP
 
 class WeatherApplicationModule : Module {
 
-
-
     constructor(application: Application) {
         bind(Geocoder::class.java).toProviderInstance(GeocoderProvider(application))
         bind(CompositeDisposable::class.java).toProviderInstance(CompositeDisposableProvider())
+
         bind(String::class.java).withName("url").toInstance(WeatherService.BASE_URL)
         bind(OkHttpClient::class.java).withName("okHttpClient").toProviderInstance(HttpClientProvider(application))
-        bind(Retrofit::class.java).withName("retrofit").toProvider(RetrofitProvider::class.java)
+        bind(Retrofit::class.java).withName("retrofit").toProvider(RetrofitProvider::class.java).singletonInScope()
         bind(WeatherApi::class.java).toProvider(WeatherApiProvider::class.java)
     }
 }
