@@ -4,10 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import org.easymock.EasyMock.expect
-import org.easymock.EasyMockRule
-import org.easymock.EasyMockSupport
-import org.easymock.Mock
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -15,24 +15,25 @@ import org.junit.Rule
 import org.junit.Test
 import toothpick.testing.ToothPickRule
 import weather.ekamp.com.weatherappkotlin.model.networking.NetworkStatusUtil
-import javax.inject.Inject
 
-class NetworkStatusUtilTest : EasyMockSupport() {
+class NetworkStatusUtilTest {
 
-    var easyMockRule = EasyMockRule(this)
+    val toothpickRule = ToothPickRule(this)
         @Rule get
 
-    var toothpickRule = ToothPickRule(this)
-        @Rule get
+    @MockK
+    internal lateinit var application: Application
+    @MockK
+    internal lateinit var connectivityManager: ConnectivityManager
+    @MockK
+    internal lateinit var networkInfo: NetworkInfo
 
-    @Mock internal lateinit var application : Application
-    @Mock internal lateinit var connectivityManager : ConnectivityManager
-    @Mock internal lateinit var networkInfo : NetworkInfo
-
-    @Inject lateinit var networkStatusUtil : NetworkStatusUtil
+    @InjectMockKs
+    lateinit var networkStatusUtil: NetworkStatusUtil
 
     @Before
     fun setup() {
+        MockKAnnotations.init(this)
         toothpickRule.setScopeName(application)
         toothpickRule.inject(this)
     }
@@ -40,16 +41,14 @@ class NetworkStatusUtilTest : EasyMockSupport() {
     @Test
     fun test_internetConnectivityAvailable_returnsTrue_when_networkInfoIsConnectedOrConnectingReturnsTrue() {
         //GIVEN
-        expect(application.getSystemService(Context.CONNECTIVITY_SERVICE)).andReturn(connectivityManager)
-        expect(connectivityManager.activeNetworkInfo).andReturn(networkInfo)
-        expect(networkInfo.isConnectedOrConnecting).andReturn(true)
-        replayAll()
+        every { application.getSystemService(Context.CONNECTIVITY_SERVICE) } returns connectivityManager
+        every { connectivityManager.activeNetworkInfo } returns networkInfo
+        every { networkInfo.isConnectedOrConnecting } returns true
 
         //WHEN
         val result = networkStatusUtil.internetConnectivityAvailable()
 
         //THEN
-        verifyAll()
         assertThat(result, `is`(true))
     }
 }

@@ -23,7 +23,7 @@ class UserLocationManager {
         fusedLocationClient.lastLocation
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful && task.result != null) {
-                    locationUpdateListener.onLocationUpdated(task.result)
+                    locationUpdateListener.onLocationUpdated(task.result!!)
                 } else {
                     Log.w(TAG, "getLastLocation:exception", task.exception)
                     locationUpdateListener.onLocationNotFound()

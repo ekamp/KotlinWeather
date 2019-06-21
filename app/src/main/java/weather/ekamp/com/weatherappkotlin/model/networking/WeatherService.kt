@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Singleton
 open class WeatherService @Inject constructor(var application: Application) {
 
-    private val BASE_URL = "http://api.openweathermap.org/data/2.5/"
+    private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     private val WEATHER_API_KEY = BuildConfig.WEATHER_API_KEY
     private val TEMPERATURE_UNITS = "imperial"
     private val sizeOfHttpCache : Long = 10 * 1024 * 1024 // 10 MiB
