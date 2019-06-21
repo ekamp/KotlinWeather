@@ -3,8 +3,8 @@ package weather.ekamp.com.weatherappkotlin.view
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import toothpick.Scope
 import toothpick.Toothpick
 import weather.ekamp.com.weatherappkotlin.R
@@ -15,10 +15,11 @@ import javax.inject.Inject
 class Splash : AppCompatActivity(), SplashView {
     val ERROR_DIALOG_TAG = "location_permission_error_dialog"
 
-    @Inject lateinit var presenter : SplashPresenter
-    lateinit var activityScope : Scope
+    @Inject
+    lateinit var presenter: SplashPresenter
+    lateinit var activityScope: Scope
 
-    lateinit var errorDialog : ErrorDialog
+    lateinit var errorDialog: ErrorDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityScope = Toothpick.openScopes(application, this)

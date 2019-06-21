@@ -17,8 +17,8 @@ https://home.openweathermap.org/api_keys
 
 ### Tools / Libs Utilized
 - Jetbrains Kotlin : https://kotlinlang.org/
-- Toothpick Dependency Injection : https://github.com/stephanenicolas/toothpick
+- Toothpick Dependency Injection 2.1.0 : https://github.com/stephanenicolas/toothpick
 - RxJava 2 / RxAndroid : https://github.com/ReactiveX/RxJava
 - Retrofit 2 : http://square.github.io/retrofit/
 - Picasso : http://square.github.io/picasso/
-- EasyMock : http://easymock.org/
+- Mockk : https://github.com/mockk/mockk
